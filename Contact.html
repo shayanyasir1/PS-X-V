@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | PlanetScope x VineList</title>
+    <style>
+        body {
+            margin: 0;
+        font-family: Arial, sans-serif;
+            background: radial-gradient(circle at top, #1a0b14, #000);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION BAR */
+        .navbar {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 0 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ff007f;
+        }
+
+        /* CONTACT LAYOUT */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .signal-status {
+            color: #ff007f;
+            font-size: 0.8rem;
+            margin-bottom: 30px;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.3; }
+        }
+
+        /* FORM STYLING */
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.1);
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: #aaa;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 5px;
+            outline: none;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #ff007f;
+            box-shadow: 0 0 10px rgba(219, 67, 143, 0.3);
+        }
+
+        button.send-btn {
+            width: 100%;
+            padding: 15px;
+            background: #ff007f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        button.send-btn:hover {
+            background: #ff3399;
+            transform: scale(1.02);
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            font-size: 0.7rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="INDEX.html">Home</a>
+        <a href="Planets.html">Planets</a>
+        <a href="Contact.html">Contacts</a>
+    </nav>
+
+    <div class="container">
+        <h1>Email Us</h1>
+        <p class="signal-status">ENCRYPTION ACTIVE // CHANNEL 0.04</p>
+
+        <div class="contact-card">
+            <form action="#">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" placeholder="ID-404" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Your Email</label>
+                    <input type="email" placeholder="name@sector.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Message</label>
+                    <textarea rows="5" placeholder="Enter..."></textarea>
+                </div>
+
+                <button type="submit" class="send-btn">Broadcast Message</button>
+            </form>
+        </div>
+
+        <p class="footer-note">If it's really important then email us!!!!</p>
+    </div>
+
+</body>
+</html>

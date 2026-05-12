@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planets | PlanetScope</title>
+    <link rel="stylesheet" href="style.css"> <!-- Optional: Move CSS to a separate file later -->
+    <style>
+        /* Reuse the styles from your index.html here */
+        body {
+font-family: "CustomFont", 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+        body { margin: 0; background: radial-gradient(circle at top, #0b1a2a, #000); color: white; min-height: 100vh; }
+              .navbar {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a { color: white; text-decoration: none; padding: 0 20px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        .navbar a:hover { color: #00d4ff; }
+        header { text-align: center; padding: 40px 20px; }
+        .section { max-width: 900px; margin: auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1); }
+        .planet-status { color: #00d4ff; font-size: 0.8em; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="planets.html">Planets</a>
+        <a href="Contact.html">Contacts</a>
+    </nav>
+
+    <header>
+        <h1>CATALOGUED WORLDS</h1>
+        <p>Known sectors within the VineList reach.</p>
+    </header>
+
+    <div class="section">
+        <div class="card">
+            <span class="planet-status">HABITABLE</span>
+            <h2>Vireon-3</h2>
+            <p>A lush jungle world emitting the pink frequency signal.</p>
+        </div>
+        <div class="card">
+            <span class="planet-status" style="color: #ff4d4d;">UNSTABLE</span>
+            <h2>Pyros-9</h2>
+            <p>Volcanic activity detected. High-level radiation interference.</p>
+        </div>
+        <div class="card">
+            <span class="planet-status" style="color: #aaa;">COLD</span>
+            <h2>Zero-Alpha</h2>
+            <p>A frozen wasteland. Silence is the only transmission.</p>
+        </div>
+        <div class="card">
+            <span class="planet-status" style="color: #e5ff00;">Beautiful</span>
+            <h2>Heaven 2.0</h2>
+            <p>A shiny beautiful place that almost looks like heaven</p>
+        </div>
+    </div>
+</body>
+</html>

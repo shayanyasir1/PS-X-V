@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanetScope x VineList</title>
+   <link rel="icon" type="image/png" href="Images/logo.png">
+    <style>
+        body {
+            margin: 0;
+            font-family: "CustomFont", 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background: radial-gradient(circle at top, #0b0f1a, #000);
+            color: white;
+            transition: 0.5s;
+            min-height: 100vh;
+        }
+
+        /* NAVIGATION BAR */
+        .navbar {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 0 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #ff007f; /* Pink glow on hover */
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* LOGO */
+        .logo {
+            width: 180px;
+            display: block;
+            margin: 20px auto;
+            transition: transform 2s linear;
+        }
+
+        .spin {
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* BUTTONS */
+        .disc-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* CONTENT */
+        .section {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* ALERT */
+        .alert {
+            color: #ff4d4d;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* THEMES */
+        .theme-pink { background: radial-gradient(circle at top, #1a0b14, #000); }
+        .theme-blue { background: radial-gradient(circle at top, #0b1a2a, #000); }
+        .theme-red { background: radial-gradient(circle at top, #2a0b0b, #000); }
+    </style>
+</head>
+<body class="theme-pink">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="planets.html">Planets</a>
+        <a href="Contact.html">Contacts</a>
+    </nav>
+
+    <header>
+        <h1>PLANETSCOPE × VINELIST</h1>
+        <p>An Unexpected Collab!</p>
+   
+<header>
+  <!-- 1. Give your image a specific ID -->
+  <img id="vinyl-display" src="Images/logo.png" class="logo spin" style="width:200px"> 
+
+  <div class="disc-buttons"> 
+    <!-- 2. Change the src to the specific theme image on click -->
+    <button onclick="document.getElementById('vinyl-display').src='Images/logo.png'">Pink</button>
+    
+    <button onclick="document.getElementById('vinyl-display').src='Images/logo Neptune.png'">Neptune</button>
+    
+    <button onclick="document.getElementById('vinyl-display').src='Images/logo MARS.png'">Mars</button> 
+  </div> 
+</header>
+
+    <div class="section">
+        <div class="card">
+            <h2>Planet Data</h2>
+            <p>Vireon-3: Unknown signals detected</p>
+        </div>
+
+        <div class="card">
+            <h2>Mission Log</h2>
+            <p class="alert">SIGNAL LOST</p>
+            <p id="logText">
+                Drone PS-01 stopped transmitting after entering deep space.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function setTheme(color) {
+            document.body.className = "theme-" + color;
+            const vinyl = document.getElementById("vinyl");
+            vinyl.classList.add("spin");
+
+            const log = document.getElementById("logText");
+            if (color === "pink") {
+                log.innerText = "Drone PS-01 stopped transmitting after entering deep space.";
+            } else if (color === "blue") {
+                log.innerText = "Signal partially restored... background noise detected.";
+            } else if (color === "red") {
+                log.innerText = "DO NOT PLAY THIS DISC.";
+            }
+        }
+    </script>
+    <p>WARNING: </p>
+</body>
+</html>
