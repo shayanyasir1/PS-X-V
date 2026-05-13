@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlanetScope x VineList</title>
+    <title>Questions</title>
    <link rel="icon" type="image/png" href="Images/logo.png">
     <style>
         body {
@@ -99,7 +99,7 @@
             background: rgba(255,255,255,0.05);
             padding: 20px;
             margin: 20px 0;
-            border-radius: 10px;
+            border-radius: 50px;
             backdrop-filter: blur(5px);
         }
 
@@ -123,38 +123,47 @@
         <a href="INDEX.html">Home</a>
         <a href="Planets.html">Planets</a>
         <a href="Contact.html">Contacts</a>
-        <a href="Questions.html">Q&A</a>
+          <a href="Questions.html">Q&A</a>
     </nav>
 
     <header>
-        <h1>PLANETSCOPE × VINELIST</h1>
-        <p>An Unexpected Collab!</p>
+        <h1>Questions</h1>
+        <p>Questions about us!</p>
    
-<header>
-  <!-- 1. Give your image a specific ID -->
-  <img id="vinyl-display" src="Images/logo.png" class="logo spin" style="width:200px"> 
 
-  <div class="disc-buttons"> 
-    <!-- 2. Change the src to the specific theme image on click -->
-    <button onclick="document.getElementById('vinyl-display').src='Images/logo Mercury.png'">Mercury</button>
-    
-    <button onclick="document.getElementById('vinyl-display').src='Images/logo Neptune.png'">Neptune</button>
-    
-    <button onclick="document.getElementById('vinyl-display').src='Images/logo MARS.png'">Mars</button> 
-  </div> 
-</header>
 
-    <div class="section">
-        <div class="card">
-            <h2>Planet Data</h2>
-            <p>Vireon-3: Unknown signals detected</p>
-        </div>
 
         <div class="card">
-            <h2>Mission Log</h2>
-            <p class="alert">SIGNAL LOST</p>
+            <h2>Question 1</h2>
+           
             <p id="logText">
-                Drone PS-01 stopped transmitting after entering deep space.
+                Q: HELLO
+            </p>
+                       <p id="logText">
+                A: Hi :D
+            </p>
+             <h2>Question 2</h2>
+              <p id="logText">
+                Q: What made you decide to make the drone?
+            </p>
+                       <p id="logText">
+                A: Well we decided to stop making rocketships and cameras in it so we made this simpler
+            </p>
+
+            <h2>Question 3</h2>
+           
+            <p id="logText">
+                Q: So which is one of the best planets you want to mention?
+            </p>
+                       <p id="logText">
+                A: Heaven 2.0
+            </p>
+            <h2>Question 4</h2>
+              <p id="logText">
+                Q: What are your plans for the future?
+            </p>
+                       <p id="logText">
+                A: Since our drone just vanished we're sending a whole ass spaceship to find it
             </p>
         </div>
     </div>
@@ -167,7 +176,8 @@
 
             const log = document.getElementById("logText");
             if (color === "pink") {
-                log.innerText = "Drone PS-01 stopped transmitting after entering deep space.";
+                log.innerText = "Q: HELLO!!!!!";
+                  log.innerText = "A: HI :)";
             } else if (color === "blue") {
                 log.innerText = "Signal partially restored... background noise detected.";
             } else if (color === "red") {
@@ -175,6 +185,5 @@
             }
         }
     </script>
-    <p>WARNING: </p>
 </body>
 </html>
