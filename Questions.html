@@ -1,189 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questions</title>
-   <link rel="icon" type="image/png" href="Images/logo.png">
-    <style>
-        body {
-            margin: 0;
-            font-family: "CustomFont", 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            background: radial-gradient(circle at top, #0b0f1a, #000);
-            color: white;
-            transition: 0.5s;
-            min-height: 100vh;
-        }
 
-        /* NAVIGATION BAR */
-        .navbar {
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>PlanetScope | FAQ</title>
 
+<style>
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 0 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .navbar a:hover {
-            color: #ff007f; /* Pink glow on hover */
-        }
+.play-btn{
+    margin-left:auto;
 
-        /* HEADER */
-        header {
-            text-align: center;
-            padding: 40px 20px;
-        }
+    padding:10px 16px;
 
-        /* LOGO */
-        .logo {
-            width: 180px;
-            display: block;
-            margin: 20px auto;
-            transition: transform 2s linear;
-        }
+    border:1px solid #ff4fa0;
 
-        .spin {
-            animation: spin 4s linear infinite;
-        }
+    border-radius:10px;
 
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+    color:#ff4fa0;
 
-        /* BUTTONS */
-        .disc-buttons {
-            text-align: center;
-            margin-top: 20px;
-        }
+    text-decoration:none;
 
-        button {
-            margin: 5px;
-            padding: 10px 15px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+    font-weight:bold;
 
-        button:hover {
-            background: rgba(238, 133, 133, 0.2);
-        }
+    transition:0.3s;
+}
 
-        /* CONTENT */
-        .section {
-            max-width: 800px;
-            margin: auto;
-            padding: 30px;
-        }
+.play-btn:hover{
+    background:#ff4fa0;
+    color:black;
+    box-shadow:0 0 20px rgba(255,79,160,0.5);
+}
+body{
+    font-family:'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif;
+    color:white;
 
-        .card {
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 50px;
-            backdrop-filter: blur(5px);
-        }
+    background:
+    radial-gradient(circle at top,#1c2945 0%,#0b101d 45%,#000 100%);
 
-        /* ALERT */
-        .alert {
-            color: #ff4d4d;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
+    overflow-x:hidden;
+}
 
-        /* THEMES */
-        .theme-pink { background: radial-gradient(circle at top, #1a0b14, #000); }
-        .theme-blue { background: radial-gradient(circle at top, #0b1a2a, #000); }
-        .theme-red { background: radial-gradient(circle at top, #2a0b0b, #000); }
-    </style>
+/* ===== STARS ===== */
+
+.stars{
+    position:fixed;
+    inset:0;
+
+    background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px);
+
+    background-size:60px 60px;
+    background-position:0 0,30px 30px;
+
+    opacity:0.12;
+
+    z-index:-1;
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar{
+    position:sticky;
+    top:0;
+
+    display:flex;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,0.75);
+
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    z-index:1000;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+
+    margin:0 25px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    transition:0.3s;
+}
+
+.navbar a:hover{
+    color:#ff66c4;
+    text-shadow:0 0 10px #ff66c4;
+}
+
+/* ===== HEADER ===== */
+
+header{
+    text-align:center;
+    padding:90px 20px 50px;
+}
+
+header h1{
+    font-size:4rem;
+    letter-spacing:5px;
+}
+
+header p{
+    color:#bdbdbd;
+    margin-top:15px;
+}
+
+/* ===== FAQ SECTION ===== */
+
+.section{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+/* ===== FAQ CARD ===== */
+
+.faq-card{
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:24px;
+
+    padding:30px;
+
+    margin-bottom:25px;
+
+    backdrop-filter:blur(10px);
+
+    transition:0.4s;
+}
+
+.faq-card:hover{
+    transform:translateY(-5px);
+
+    box-shadow:0 0 30px rgba(255,255,255,0.08);
+}
+
+.faq-card h2{
+    color:#ff85d1;
+    margin-bottom:15px;
+
+    font-size:1.7rem;
+}
+
+.faq-card p{
+    color:#d4d4d4;
+    line-height:1.8;
+}
+
+/* ===== FOOTER ===== */
+
+.footer{
+    text-align:center;
+
+    margin-top:80px;
+    margin-bottom:60px;
+
+    color:#6f6f6f;
+
+    letter-spacing:3px;
+}
+
+</style>
+
 </head>
-<body class="theme-pink">
 
-    <!-- NAVIGATION BAR -->
-    <nav class="navbar">
-        <a href="INDEX.html">Home</a>
-        <a href="Planets.html">Planets</a>
-        <a href="Contact.html">Contacts</a>
-          <a href="Questions.html">Q&A</a>
-    </nav>
+<body>
 
-    <header>
-        <h1>Questions</h1>
-        <p>Questions about us!</p>
-   
+<div class="stars"></div>
 
+<!-- NAVBAR -->
 
+<nav class="navbar">
 
-        <div class="card">
-            <h2>Question 1</h2>
-           
-            <p id="logText">
-                Q: HELLO
-            </p>
-                       <p id="logText">
-                A: Hi :D
-            </p>
-             <h2>Question 2</h2>
-              <p id="logText">
-                Q: What made you decide to make the drone?
-            </p>
-                       <p id="logText">
-                A: Well we decided to stop making rocketships and cameras in it so we made this simpler
-            </p>
+<a href="INDEX.html">Home</a>
+<a href="Planets.html">Planets</a>
+<a href="Contact.html">Contact</a>
+<a href="Questions.html">FAQ</a>
+<a href="game.html" class="play-btn">Play Game</a>
 
-            <h2>Question 3</h2>
-           
-            <p id="logText">
-                Q: So which is one of the best planets you want to mention?
-            </p>
-                       <p id="logText">
-                A: Heaven 2.0
-            </p>
-            <h2>Question 4</h2>
-              <p id="logText">
-                Q: What are your plans for the future?
-            </p>
-                       <p id="logText">
-                A: Since our drone just vanished we're sending a whole ass spaceship to find it
-            </p>
-        </div>
-    </div>
+</nav>
 
-    <script>
-        function setTheme(color) {
-            document.body.className = "theme-" + color;
-            const vinyl = document.getElementById("vinyl");
-            vinyl.classList.add("spin");
+<!-- HEADER -->
 
-            const log = document.getElementById("logText");
-            if (color === "pink") {
-                log.innerText = "Q: HELLO!!!!!";
-                  log.innerText = "A: HI :)";
-            } else if (color === "blue") {
-                log.innerText = "Signal partially restored... background noise detected.";
-            } else if (color === "red") {
-                log.innerText = "DO NOT PLAY THIS DISC.";
-            }
-        }
-    </script>
+<header>
+
+<h1>FREQUENTLY ASKED QUESTIONS</h1>
+
+<p>
+Questions commonly received by PlanetScope and VineList.
+</p>
+
+</header>
+
+<!-- FAQ SECTION -->
+
+<section class="section">
+
+<!-- FAQ -->
+
+<div class="faq-card">
+
+<h2>What is PlanetScope?</h2>
+
+<p>
+PlanetScope is a deep-space exploration organization dedicated to cataloguing newly discovered worlds and recovering lost cosmic transmissions.
+</p>
+
+</div>
+
+<div class="faq-card">
+
+<h2>What is VineList?</h2>
+
+<p>
+VineList is a vinyl-based audio company that transforms recovered planetary frequencies into collectible analog discs.
+</p>
+
+</div>
+
+<div class="faq-card">
+
+<h2>What was the purpose of this partnership?</h2>
+
+<p>
+PlanetScope partnered with VineList to preserve recovered deep-space transmissions through collectible vinyl discs. 
+The goal was to transform mysterious planetary frequencies into physical media that could be studied, archived, and experienced by the public.
+</p>
+
+</div>
+
+<div class="faq-card">
+
+<h2>How do you benefit from working together?</h2>
+
+<p>
+PlanetScope provides exploration data and recovered signals while VineList converts those signals into unique audio experiences. 
+Together they combine scientific discovery with analog sound preservation.
+</p>
+
+</div>
+
+<div class="faq-card">
+
+<h2>How do you make the patterns on the discs and what are they made out of?</h2>
+
+<p>
+The patterns are generated using real frequency scans collected from deep-space transmissions. 
+Each disc is pressed using layered synthetic vinyl compounds mixed with reflective materials to create planet-inspired visual designs.
+</p>
+
+</div>
+
+<div class="faq-card">
+
+<h2>How does selling unique vinyl discs promote PlanetScope?</h2>
+
+<p>
+Every vinyl release spreads awareness of PlanetScope discoveries and exploration missions. 
+Collectors gain access to hidden transmissions, classified logs, and encoded planetary data connected to each release.
+</p>
+
+</div>
+
+<div class="faq-card">
+
+<h2>Are the transmissions real?</h2>
+
+<p>
+Some recordings are authentic recovered signals from exploration drones while others remain under investigation.
+</p>
+
+</div>
+
+<div class="faq-card">
+
+<h2>What happened to Drone PS-01?</h2>
+
+<p>
+Drone PS-01 stopped transmitting shortly after descending into the atmosphere of Vireon-3.
+Only fragmented audio was recovered.
+</p>
+
+</div>
+
+<div class="faq-card">
+
+<h2>Can civilians visit the planets?</h2>
+
+<p>
+Most catalogued worlds are restricted due to environmental hazards and unexplained anomalies.
+</p>
+
+</div>
+
+<div class="faq-card">
+
+<h2>Why are some planets classified?</h2>
+
+<p>
+Several worlds contain unstable environments, unknown lifeforms, or transmissions considered dangerous to public release.
+</p>
+
+</div>
+
+<div class="faq-card">
+
+<h2>How are the vinyl discs made?</h2>
+
+<p>
+Recovered frequencies are converted into audio waveforms and pressed into custom-designed vinyl patterns inspired by each planet.
+</p>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<p>
+MORE QUESTIONS MAY BE ADDED IN FUTURE TRANSMISSIONS
+</p>
+
+</div>
+
+</section>
+
 </body>
 </html>

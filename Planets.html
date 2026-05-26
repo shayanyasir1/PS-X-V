@@ -1,68 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planets | PlanetScope</title>
-    <link rel="stylesheet" href="style.css"> <!-- Optional: Move CSS to a separate file later -->
-    <style>
-        /* Reuse the styles from your index.html here */
-        body {
-font-family: "CustomFont", 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PlanetScope | Catalogued Worlds</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-        body { margin: 0; background: radial-gradient(circle at top, #0b1a2a, #000); color: white; min-height: 100vh; }
-              .navbar {
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .navbar a { color: white; text-decoration: none; padding: 0 20px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
-        .navbar a:hover { color: #00d4ff; }
-        header { text-align: center; padding: 40px 20px; }
-        .section { max-width: 900px; margin: auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1); }
-        .planet-status { color: #00d4ff; font-size: 0.8em; font-weight: bold; }
-    </style>
+
+body{
+    font-family:'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif;
+    color:white;
+    overflow-x:hidden;
+
+    background:
+    radial-gradient(circle at top,#1c2945 0%,#0b101a 45%,#000 100%);
+}
+
+/* ===== STARS ===== */
+
+.stars{
+    position:fixed;
+    inset:0;
+
+    background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px);
+
+    background-size:60px 60px;
+    background-position:0 0,30px 30px;
+
+    opacity:0.12;
+
+    z-index:-1;
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar{
+    position:sticky;
+    top:0;
+
+    display:flex;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,0.75);
+
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    z-index:1000;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+
+    margin:0 25px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    transition:0.3s;
+}
+
+.navbar a:hover{
+    color:#6ec8ff;
+    text-shadow:0 0 10px #6ec8ff;
+}
+
+/* ===== HEADER ===== */
+
+header{
+    text-align:center;
+    padding:90px 20px 60px;
+}
+
+header h1{
+    font-size:4rem;
+    letter-spacing:5px;
+}
+
+header p{
+    color:#bdbdbd;
+    margin-top:15px;
+    font-size:1.1rem;
+}
+
+.play-btn{
+    margin-left:auto;
+
+    padding:10px 16px;
+
+    border:1px solid #ff4fa0;
+
+    border-radius:10px;
+
+    color:#ff4fa0;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.play-btn:hover{
+    background:#ff4fa0;
+    color:black;
+    box-shadow:0 0 20px rgba(255,79,160,0.5);
+}
+
+/* ===== GRID ===== */
+
+.section{
+    max-width:1400px;
+    margin:auto;
+    padding:20px;
+}
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+}
+
+/* ===== PLANET CARD ===== */
+
+.card{
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:24px;
+
+    padding:30px;
+
+    backdrop-filter:blur(10px);
+
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+
+    box-shadow:0 0 35px rgba(255,255,255,0.08);
+}
+
+.planet-status{
+    font-size:0.8rem;
+    font-weight:bold;
+
+    letter-spacing:1px;
+}
+
+.card h2{
+    margin:15px 0;
+    font-size:1.8rem;
+}
+
+.card p{
+    color:#d0d0d0;
+    line-height:1.7;
+}
+
+/* ===== END MESSAGE ===== */
+
+.end-message{
+    text-align:center;
+
+    margin-top:80px;
+    margin-bottom:80px;
+
+    color:#7f7f7f;
+
+    letter-spacing:3px;
+}
+
+.end-message h2{
+    margin-bottom:15px;
+    font-size:2rem;
+}
+
+.end-message p{
+    opacity:0.7;
+}
+
+/* ===== ANIMATION ===== */
+
+.card{
+    animation:fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+
 </head>
+
 <body>
-    <nav class="navbar">
-        <a href="INDEX.html">Home</a>
-        <a href="Planets.html">Planets</a>
-        <a href="Contact.html">Contacts</a>
-          <a href="Questions.html">Q&A</a>
-    </nav>
 
-    <header>
-        <h1>CATALOGUED WORLDS</h1>
-        <p>Known sectors within the VineList reach.</p>
-    </header>
+<div class="stars"></div>
 
-    <div class="section">
-        <div class="card">
-            <span class="planet-status">HABITABLE</span>
-            <h2>Vireon-3</h2>
-            <p>A lush jungle world emitting the pink frequency signal.</p>
-        </div>
-        <div class="card">
-            <span class="planet-status" style="color: #ff4d4d;">UNSTABLE</span>
-            <h2>Pyros-9</h2>
-            <p>Volcanic activity detected. High-level radiation interference.</p>
-        </div>
-        <div class="card">
-            <span class="planet-status" style="color: #aaa;">COLD</span>
-            <h2>Zero-Alpha</h2>
-            <p>A frozen wasteland. Silence is the only transmission.</p>
-        </div>
-        <div class="card">
-            <span class="planet-status" style="color: #e5ff00;">Beautiful</span>
-            <h2>Heaven 2.0</h2>
-            <p>A shiny beautiful place that almost looks like heaven</p>
-        </div>
-    </div>
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<a href="INDEX.html">Home</a>
+<a href="Planets.html">Planets</a>
+<a href="Contact.html">Contact</a>
+<a href="Questions.html">FAQ</a>
+<a href="game.html" class="play-btn">Play Game</a>
+</nav>
+
+<!-- HEADER -->
+
+<header>
+
+<h1>CATALOGUED WORLDS</h1>
+
+<p>
+Known planets currently under PlanetScope surveillance.
+</p>
+
+</header>
+
+<!-- PLANETS -->
+
+<section class="section">
+
+<div class="grid">
+
+<!-- PLANET -->
+
+<div class="card">
+<span class="planet-status" style="color:#00ff9d;">HABITABLE</span>
+<h2>Vireon-3</h2>
+<p>
+A jungle planet emitting strange pink atmospheric frequencies.
+PlanetScope drones vanished shortly after entering the lower cloud layer.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#ff5757;">UNSTABLE</span>
+<h2>Pyros-9</h2>
+<p>
+A volcanic superworld experiencing constant magnetic storms and radiation eruptions.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#7ed7ff;">FROZEN</span>
+<h2>Zero-Alpha</h2>
+<p>
+A frozen wasteland with no detectable lifeforms.
+The surface reflects almost no light.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#ffe066;">PARADISE?</span>
+<h2>Heaven 2.0</h2>
+<p>
+An incredibly beautiful world with glowing oceans and bright skies.
+No explorers have returned.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#ff85d1;">SIGNAL ACTIVE</span>
+<h2>Echo Prime</h2>
+<p>
+All transmissions sent to the planet return distorted human voices.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#9f9f9f;">MISSING</span>
+<h2>Null-7</h2>
+<p>
+A planet removed from all digital star maps after a classified incident.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#00ffcc;">BIOLOGICAL</span>
+<h2>Mire-X</h2>
+<p>
+The surface appears alive and reacts to nearby spacecraft movement.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#ff9966;">RESTRICTED</span>
+<h2>Vault-13</h2>
+<p>
+PlanetScope law forbids all civilian approach within 50,000 km.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#66b3ff;">OCEANIC</span>
+<h2>Nereid-5</h2>
+<p>
+An endless ocean world where deep sonar scans detected unknown structures.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#66ff66;">OVERGROWN</span>
+<h2>Eden Wake</h2>
+<p>
+Massive forests cover the planet surface.
+The trees appear to move at night.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#ff4444;">HOSTILE</span>
+<h2>Crimson Theta</h2>
+<p>
+Violent electrical storms permanently cover the atmosphere.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#b18cff;">ANOMALY</span>
+<h2>Oblivion Reach</h2>
+<p>
+Time distortion signals were detected near orbit.
+Several crews reported missing hours.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#e0e0e0;">UNKNOWN</span>
+<h2>Sector-404</h2>
+<p>
+Detected for only 14 seconds before disappearing from all radar systems.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#00ffd0;">ARTIFICIAL?</span>
+<h2>Arcadia-12</h2>
+<p>
+Perfect geometric structures cover the surface in impossible patterns.
+</p>
+</div>
+
+<div class="card">
+<span class="planet-status" style="color:#ff99cc;">ACTIVE SIGNAL</span>
+<h2>Velora IX</h2>
+<p>
+Repeating music-like frequencies can be heard near the upper atmosphere.
+</p>
+</div>
+
+</div>
+
+<!-- END -->
+
+<div class="end-message">
+
+<h2>THAT'S ALL FOR NOW</h2>
+
+<p>
+Additional worlds remain classified by the PlanetScope Exploration Division.
+</p>
+
+</div>
+
+</section>
+
 </body>
 </html>

@@ -1,174 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | PlanetScope x VineList</title>
-    <style>
-        body {
-            margin: 0;
-        font-family: Arial, sans-serif;
-            background: radial-gradient(circle at top, #1a0b14, #000);
-            color: white;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
 
-        /* NAVIGATION BAR */
-        .navbar {
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+<meta charset="UTF-8">
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 0 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .navbar a:hover {
-            color: #ff007f;
-        }
+<title>Contact</title>
 
-        /* CONTACT LAYOUT */
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            text-align: center;
-        }
+<style>
 
-        h1 {
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    color:white;
 
-        .signal-status {
-            color: #ff007f;
-            font-size: 0.8rem;
-            margin-bottom: 30px;
-            animation: blink 2s infinite;
-        }
+    background:
+    radial-gradient(circle at top,#2a1020,#000);
 
-        @keyframes blink {
-            50% { opacity: 0.3; }
-        }
+    min-height:100vh;
+}
 
-        /* FORM STYLING */
-        .contact-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
+.navbar{
+    position:sticky;
+    top:0;
 
-        .input-group {
-            text-align: left;
-            margin-bottom: 20px;
-        }
+    display:flex;
+    justify-content:center;
 
-        label {
-            display: block;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            color: #aaa;
-        }
+    padding:20px;
 
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            border-radius: 5px;
-            outline: none;
-            box-sizing: border-box;
-            transition: 0.3s;
-        }
+    background:rgba(0,0,0,0.75);
 
-        input:focus, textarea:focus {
-            border-color: #ff007f;
-            box-shadow: 0 0 10px rgba(219, 67, 143, 0.3);
-        }
+    backdrop-filter:blur(12px);
 
-        button.send-btn {
-            width: 100%;
-            padding: 15px;
-            background: #ff007f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            letter-spacing: 2px;
-            transition: 0.3s;
-        }
+    border-bottom:1px solid rgba(255,255,255,0.08);
 
-        button.send-btn:hover {
-            background: #ff3399;
-            transform: scale(1.02);
-        }
+    z-index:1000;
+}
 
-        .footer-note {
-            margin-top: 30px;
-            font-size: 0.7rem;
-            color: #555;
-        }
-    </style>
+.navbar a{
+    color:white;
+    text-decoration:none;
+
+    margin:0 25px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    transition:0.3s;
+}
+
+.navbar a:hover{
+    color:#ff66c4;
+    text-shadow:0 0 10px #ff66c4;
+}
+
+.play-btn{
+    margin-left:auto;
+
+    padding:10px 16px;
+
+    border:1px solid #ff4fa0;
+
+    border-radius:10px;
+
+    color:#ff4fa0;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.play-btn:hover{
+    background:#ff4fa0;
+    color:black;
+    box-shadow:0 0 20px rgba(255,79,160,0.5);
+}
+
+.container{
+    max-width:700px;
+    margin:60px auto;
+    padding:20px;
+}
+
+.contact-card{
+    background:rgba(255,255,255,0.05);
+
+    padding:40px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:rgba(0,0,0,0.5);
+
+    color:white;
+}
+
+button{
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#ff4da6;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.02);
+}
+
+</style>
+
 </head>
+
 <body>
 
-    <nav class="navbar">
-        <a href="INDEX.html">Home</a>
-        <a href="Planets.html">Planets</a>
-        <a href="Contact.html">Contacts</a>
-          <a href="Questions.html">Q&A</a>
-    </nav>
+<nav class="navbar">
+    <a href="INDEX.html">Home</a>
+    <a href="Planets.html">Planets</a>
+    <a href="Contact.html">Contact</a>
+    <a href="Questions.html">FAQ</a>
+    <a href="game.html" class="play-btn">Play Game</a>
+</nav>
 
+<div class="container">
 
-    
-    <div class="container">
-        <h1>Email Us</h1>
+<div class="contact-card">
 
+<h1>Broadcast Message</h1>
 
-        <div class="contact-card">
-            <form action="#">
-                <div class="input-group">
-                    <label>Username</label>
-                    <input type="text" placeholder="ID-404" required>
-                </div>
+<br>
 
-                <div class="input-group">
-                    <label>Your Email</label>
-                    <input type="email" placeholder="name@sector.com" required>
-                </div>
+<form action="https://formsubmit.co/shayan.yasir@education.nsw.gov.au" method="POST">
 
-                <div class="input-group">
-                    <label>Message</label>
-                    <textarea rows="5" placeholder="Enter..."></textarea>
-                </div>
+<input type="hidden" name="_captcha" value="false">
 
-                <button type="submit" class="send-btn">Broadcast Message</button>
-            </form>
-        </div>
+<input type="hidden" name="_subject" value="PlanetScope Transmission">
 
-        <p class="footer-note">If it's really important then email us!!!!</p>
-    </div>
+<div class="input-group">
+<label>Username</label>
+<input type="text" name="username" required>
+</div>
+
+<div class="input-group">
+<label>Email</label>
+<input type="email" name="email" required>
+</div>
+
+<div class="input-group">
+<label>Message</label>
+<textarea name="message" rows="5" required></textarea>
+</div>
+
+<button type="submit">
+Broadcast Transmission
+</button>
+
+</form>
+
+</div>
+
+</div>
 
 </body>
 </html>
