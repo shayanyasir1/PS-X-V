@@ -48,7 +48,36 @@ body{
     overflow-x:hidden;
 }
 
-/* ===== STARS ===== */
+.hero{
+    min-height:55vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    text-align:center;
+
+    padding:40px 20px;
+}
+
+.hero h1{
+    font-size:5rem;
+    letter-spacing:6px;
+
+    margin-bottom:15px;
+
+    animation:fadeUp 1.2s ease;
+}
+
+.hero p{
+    color:#c7c7c7;
+    font-size:1.2rem;
+    max-width:700px;
+    line-height:1.7;
+
+    animation:fadeUp 1.8s ease;
+}
 
 .stars{
     position:fixed;
@@ -201,7 +230,7 @@ header p{
 <!-- HEADER -->
 
 <header>
-
+<section class="hero">
 <h1>FREQUENTLY ASKED QUESTIONS</h1>
 
 <p>
@@ -342,6 +371,6 @@ MORE QUESTIONS MAY BE ADDED IN FUTURE TRANSMISSIONS
 </div>
 
 </section>
-
+</section>
 </body>
 </html>
