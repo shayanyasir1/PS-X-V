@@ -6,6 +6,15 @@
 
 <style>
 
+body{
+    margin:0;
+    background:black;
+    font-family:Arial;
+    overflow:hidden;
+    color:white;
+}
+
+
 .navbar{
     position:sticky;
     top:0;
@@ -43,14 +52,6 @@
     text-shadow:0 0 12px #ff66c4;
 }
 
-/* BACKGROUND */
-body{
-    margin:0;
-    background: radial-gradient(circle at center,#0b0f1a 0%,#000 100%);
-    font-family:Arial;
-    overflow:hidden;
-}
-
 /* GAME CONTAINER */
 #gameContainer{
     position:relative;
@@ -58,36 +59,42 @@ body{
     height:600px;
     margin:40px auto;
 
-    background: radial-gradient(circle at center,#0a1020,#000);
+    background:black;
 
-    border:1px solid rgba(255,79,160,0.25);
-    box-shadow:0 0 60px rgba(255,79,160,0.15);
-    border-radius:12px;
+    border:2px solid white;
+
+    overflow:hidden;
 }
 
-.play-btn{
-    padding:8px 14px;
-
-    border:1px solid rgba(255,79,160,0.5);
-    border-radius:8px;
-
-    background:rgba(0,0,0,0.4);
-    color:#ff4fa0;
-
-    text-decoration:none;
-    font-weight:bold;
-
-    transition:0.3s;
+/* STAR BACKGROUND */
+.stars{
+    position:absolute;
+    width:100%;
+    height:100%;
+    z-index:0;
 }
 
-.play-btn:hover{
-    background:#ff4fa0;
-    color:black;
-    box-shadow:0 0 15px rgba(255,79,160,0.5);
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation: twinkle 2s infinite alternate;
 }
 
-/* CANVAS */
+@keyframes twinkle{
+    from{
+        opacity:0.2;
+    }
+    to{
+        opacity:1;
+    }
+}
+
 canvas{
+    position:relative;
+    z-index:1;
     width:100%;
     height:100%;
 }
@@ -98,7 +105,7 @@ canvas{
     top:10px;
     left:10px;
     color:white;
-    font-size:14px;
+    z-index:2;
 }
 
 .lives{
@@ -106,9 +113,10 @@ canvas{
     top:10px;
     right:10px;
     color:#ff4d4d;
+    z-index:2;
 }
 
-/* GAME OVER SCREEN */
+/* GAME OVER */
 #gameOverScreen{
     position:absolute;
     inset:0;
@@ -116,26 +124,19 @@ canvas{
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    background:rgba(0,0,0,0.85);
+    background:rgba(0,0,0,0.9);
     color:white;
-    text-align:center;
-    border-radius:12px;
-}
-
-#gameOverScreen h1{
-    color:#ff4d4d;
-    letter-spacing:4px;
+    z-index:10;
 }
 
 button{
-    margin-top:15px;
     padding:10px 18px;
-    border:none;
-    background:#ff4fa0;
+    background:white;
     color:black;
-    font-weight:bold;
+    border:none;
     cursor:pointer;
-    border-radius:8px;
+    margin-top:10px;
+    font-weight:bold;
 }
 
 button:hover{
@@ -145,70 +146,107 @@ button:hover{
 </style>
 </head>
 
-<nav class="navbar">
+<body>
 
+<nav class="navbar">
 <a href="INDEX.html">Home</a>
 <a href="Planets.html">Planets</a>
 <a href="Contact.html">Contact</a>
 <a href="Questions.html">FAQ</a>
-<a href="game.html" class="play-btn">Play Game</a>
-
+<a href="game.html">Play Game</a>
 </nav>
-
-<body>
 
 <div id="gameContainer">
 
-    <div class="hud">
-        <div id="score">Score: 0</div>
-        <div id="speed">Speed: 1</div>
-    </div>
+<div class="stars" id="stars"></div>
 
-    <div class="lives" id="lives">❤️❤️❤️</div>
+<div class="hud">
+    <div id="score">Score: 0</div>
+</div>
 
-    <div id="gameOverScreen">
-        <h1>GAME OVER</h1>
-        <p id="finalScore"></p>
-        <button onclick="restartGame()">Try Again</button>
-    </div>
+<div class="lives" id="lives">❤️❤️❤️</div>
 
-    <canvas id="game"></canvas>
+<div id="gameOverScreen">
+    <h1>GAME OVER</h1>
+    <button onclick="restartGame()">Try Again</button>
+</div>
+
+<canvas id="game"></canvas>
 
 </div>
 
 <script>
 
+/* STAR GENERATOR */
+const starsContainer = document.getElementById("stars");
+
+for(let i=0;i<150;i++){
+
+    let star = document.createElement("div");
+
+    star.classList.add("star");
+
+    star.style.left = Math.random()*100 + "%";
+    star.style.top = Math.random()*100 + "%";
+
+    star.style.width = Math.random()*3 + "px";
+    star.style.height = star.style.width;
+
+    star.style.animationDuration =
+        (Math.random()*3+1) + "s";
+
+    starsContainer.appendChild(star);
+}
+
+/* CANVAS */
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
 canvas.width = 900;
 canvas.height = 600;
 
+/* IMAGES */
+const rocket1 = new Image();
+rocket1.src = "Images/rocketfr1.png";
+
+const rocket2 = new Image();
+rocket2.src = "Images/rocketfr2.png";
+
+const astrImg = new Image();
+astrImg.src = "Images/astr.png";
+
+const healImg = new Image();
+healImg.src = "Images/heal.png";
+
 /* PLAYER */
 let player = {
     x:450,
     y:520,
-    size:18,
+    width:60,
+    height:60,
     speed:6
 };
 
-/* GAME STATE */
+/* OBJECTS */
 let bullets = [];
 let enemies = [];
 let powerups = [];
 
 let score = 0;
 let lives = 3;
-let gameSpeed = 1;
 
 let keys = {};
 
 /* INPUT */
 document.addEventListener("keydown", e=>{
+
     keys[e.key] = true;
 
     if(e.key === " "){
-        bullets.push({x:player.x,y:player.y});
+        bullets.push({
+            x:player.x + 28,
+            y:player.y
+        });
     }
 });
 
@@ -218,65 +256,101 @@ document.addEventListener("keyup", e=>{
 
 /* SPAWN ENEMIES */
 setInterval(()=>{
+
     enemies.push({
-        x:Math.random()*880,
-        y:-20,
-        size:18,
-        speed:2 + gameSpeed
+        x:Math.random()*840,
+        y:-40,
+        size:40,
+        speed:2.5
     });
+
 },700);
 
-/* POWERUPS */
+/* SPAWN HEALS */
 setInterval(()=>{
+
     powerups.push({
-        x:Math.random()*880,
-        y:-20,
-        size:14,
+        x:Math.random()*840,
+        y:-40,
+        size:35,
         speed:2
     });
+
 },5000);
 
 /* UPDATE */
 function update(){
 
-    gameSpeed += 0.002;
+    if(keys["ArrowLeft"]){
+        player.x -= player.speed;
+    }
 
-    if(keys["ArrowLeft"]) player.x -= player.speed;
-    if(keys["ArrowRight"]) player.x += player.speed;
+    if(keys["ArrowRight"]){
+        player.x += player.speed;
+    }
 
-    player.x = Math.max(0,Math.min(880,player.x));
+    player.x = Math.max(
+        0,
+        Math.min(840,player.x)
+    );
 
+    /* BULLETS */
     bullets.forEach((b,i)=>{
+
         b.y -= 8;
-        if(b.y < 0) bullets.splice(i,1);
+
+        if(b.y < 0){
+            bullets.splice(i,1);
+        }
     });
 
+    /* ENEMIES */
     enemies.forEach((e,ei)=>{
+
         e.y += e.speed;
 
-        if(Math.abs(e.x-player.x)<20 && Math.abs(e.y-player.y)<20){
+        if(
+            Math.abs(e.x-player.x)<30 &&
+            Math.abs(e.y-player.y)<30
+        ){
             enemies.splice(ei,1);
             lives--;
             updateLives();
         }
 
         bullets.forEach((b,bi)=>{
-            if(Math.abs(e.x-b.x)<20 && Math.abs(e.y-b.y)<20){
+
+            if(
+                Math.abs(e.x-b.x)<25 &&
+                Math.abs(e.y-b.y)<25
+            ){
+
                 enemies.splice(ei,1);
                 bullets.splice(bi,1);
+
                 score += 10;
+
                 updateScore();
             }
         });
     });
 
+    /* HEAL */
     powerups.forEach((p,pi)=>{
+
         p.y += p.speed;
 
-        if(Math.abs(p.x-player.x)<20 && Math.abs(p.y-player.y)<20){
+        if(
+            Math.abs(p.x-player.x)<30 &&
+            Math.abs(p.y-player.y)<30
+        ){
+
             powerups.splice(pi,1);
+
             score += 50;
+
             lives = Math.min(3,lives+1);
+
             updateScore();
             updateLives();
         }
@@ -285,7 +359,6 @@ function update(){
     if(lives <= 0){
         gameOver();
     }
-
 }
 
 /* DRAW */
@@ -293,64 +366,103 @@ function draw(){
 
     ctx.clearRect(0,0,900,600);
 
-    ctx.fillStyle="#ff4fa0";
-    ctx.fillRect(player.x,player.y,player.size,player.size);
+    /* ROCKET ANIMATION */
+    let rocket =
+        Math.floor(Date.now()/200)%2===0
+        ? rocket1
+        : rocket2;
 
+    ctx.drawImage(
+        rocket,
+        player.x,
+        player.y,
+        player.width,
+        player.height
+    );
+
+    /* BULLETS */
     ctx.fillStyle="white";
+
     bullets.forEach(b=>{
-        ctx.fillRect(b.x,b.y,3,10);
+
+        ctx.fillRect(
+            b.x,
+            b.y,
+            4,
+            12
+        );
     });
 
-    ctx.fillStyle="#00d4ff";
+    /* ASTR ENEMIES */
     enemies.forEach(e=>{
-        ctx.fillRect(e.x,e.y,e.size,e.size);
+
+        ctx.drawImage(
+            astrImg,
+            e.x,
+            e.y,
+            e.size,
+            e.size
+        );
     });
 
-    ctx.fillStyle="#00ff88";
+    /* HEALS */
     powerups.forEach(p=>{
-        ctx.fillRect(p.x,p.y,p.size,p.size);
-    });
 
+        ctx.drawImage(
+            healImg,
+            p.x,
+            p.y,
+            p.size,
+            p.size
+        );
+    });
 }
 
 /* HUD */
 function updateScore(){
-    document.getElementById("score").innerText="Score: "+score;
+    document.getElementById("score")
+    .innerText = "Score: " + score;
 }
 
 function updateLives(){
-    document.getElementById("lives").innerText="❤️".repeat(lives);
+    document.getElementById("lives")
+    .innerText = "❤️".repeat(lives);
 }
 
 /* GAME OVER */
 function gameOver(){
-    document.getElementById("gameOverScreen").style.display="flex";
-    document.getElementById("finalScore").innerText="Score: "+score;
+
+    document.getElementById(
+        "gameOverScreen"
+    ).style.display = "flex";
 }
 
 /* RESTART */
 function restartGame(){
 
-    score=0;
-    lives=3;
-    gameSpeed=1;
+    score = 0;
+    lives = 3;
 
-    bullets=[];
-    enemies=[];
-    powerups=[];
+    bullets = [];
+    enemies = [];
+    powerups = [];
 
-    player.x=450;
+    player.x = 450;
 
     updateScore();
     updateLives();
 
-    document.getElementById("gameOverScreen").style.display="none";
+    document.getElementById(
+        "gameOverScreen"
+    ).style.display = "none";
 }
 
 /* LOOP */
 function loop(){
+
     update();
     draw();
+
     requestAnimationFrame(loop);
 }
 
