@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PlanetScope × VineList</title>
+
+<link rel="icon" type="image/png" href="Images/logo.png">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif;
+    color:white;
+    overflow-x:hidden;
+    background:
+    radial-gradient(circle at top,#1d2945 0%,#0b101d 45%,#000 100%);
+}
+
+/* ===== STARS ===== */
+
+.stars{
+    position:fixed;
+    inset:0;
+
+    background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px);
+
+    background-size:60px 60px;
+    background-position:0 0,30px 30px;
+
+    opacity:0.12;
+
+    z-index:-1;
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar{
+    position:sticky;
+    top:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,0.75);
+
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+    z-index:1000;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+
+    margin:0 25px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    transition:0.3s;
+}
+
+.navbar a:hover{
+    color:#ff66c4;
+    text-shadow:0 0 12px #ff66c4;
+}
+
+/* ===== HERO ===== */
+.hero{
+    min-height:55vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    text-align:center;
+
+    padding:40px 20px;
+}
+
+.hero h1{
+    font-size:5rem;
+    letter-spacing:6px;
+
+    margin-bottom:15px;
+
+    animation:fadeUp 1.2s ease;
+}
+
+.hero p{
+    color:#c7c7c7;
+    font-size:1.2rem;
+    max-width:700px;
+    line-height:1.7;
+
+    animation:fadeUp 1.8s ease;
+}
+
+/* ===== LOGO ===== */
+
+.logo{
+    width:400px;
+
+    margin:60px 0;
+
+    animation:spin 10s linear infinite;
+}
+
+@keyframes spin{
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+
+.disc-buttons{
+    margin-top:10px;
+}
+
+button{
+    padding:14px 22px;
+
+    margin:8px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,0.08);
+
+    color:white;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-4px);
+
+    background:rgba(255,255,255,0.18);
+
+    box-shadow:0 0 20px rgba(255,255,255,0.12);
+}
+
+/* ===== SECTION ===== */
+
+.section{
+    max-width:1200px;
+    margin:auto;
+    padding:90px 25px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#a8a8a8;
+}
+
+/* ===== CARDS ===== */
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+}
+
+.card{
+    background: rgba(0, 0, 0, 0.25);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+
+    transition: 0.3s ease;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+
+    box-shadow:0 0 35px rgba(255,255,255,0.08);
+}
+
+.card h3{
+    margin-bottom:15px;
+    font-size:1.5rem;
+}
+
+.play-btn{
+    margin-left:auto;
+
+    padding:10px 16px;
+
+    border:1px solid #ff4fa0;
+
+    border-radius:10px;
+
+    color:#ff4fa0;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.play-btn:hover{
+    background:#ff4fa0;
+    color:black;
+    box-shadow:0 0 20px rgba(255,79,160,0.5);
+}
+
+.card p{
+    color: rgba(255,255,255,0.75);
+}
+
+.card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px rgba(255, 79, 160, 0.15);
+    border-color: rgba(255, 79, 160, 0.25);
+}
+
+/* ===== INFO STRIP ===== */
+
+.info-strip{
+    margin-top:50px;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(255,102,196,0.15),
+    rgba(0,162,255,0.12));
+
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.info-strip h2{
+    margin-bottom:20px;
+    font-size:2rem;
+}
+
+.info-strip p{
+    line-height:1.9;
+    color:#d8d8d8;
+}
+
+/* ===== SIGNAL BOX ===== */
+
+.signal-box{
+    background:black;
+
+    border-left:5px solid #ff4d6d;
+
+    padding:25px;
+
+    margin-top:40px;
+
+    border-radius:15px;
+}
+
+.signal-box h3{
+    color:#ff4d6d;
+    margin-bottom:10px;
+}
+
+.signal-box p{
+    color:#cfcfcf;
+    line-height:1.8;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+    text-align:center;
+
+    padding:60px 20px;
+
+    color:#777;
+
+    border-top:1px solid rgba(255,255,255,0.08);
+
+    margin-top:50px;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<a href="index.html">Home</a>
+<a href="Planets.html">Planets</a>
+<a href="Contact.html">Contact</a>
+<a href="Questions.html">FAQ</a>
+<a href="game.html" class="play-btn">Play Game</a>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>PLANETSCOPE × VINELIST</h1>
+
+<p>
+A classified collaboration between the PlanetScope Exploration Division and VineList Audio Systems.
+Recovering lost planetary frequencies and transforming them into collectible vinyl transmissions.
+</p>
+
+<img
+id="vinyl-display"
+src="Images/logo.png"
+class="logo">
+
+<div class="disc-buttons">
+
+<button onclick="
+document.getElementById('vinyl-display').src='Images/logo Mercury.png';
+document.body.style.background='radial-gradient(circle at top,#300700,#300700,#000)';
+">
+Mercury
+</button>
+
+<button onclick="
+document.getElementById('vinyl-display').src='Images/logo Neptune.png';
+document.body.style.background='radial-gradient(circle at top,#2d1634,#09050b,#000)';
+">
+Neptune
+</button>
+
+<button onclick="
+document.getElementById('vinyl-display').src='Images/logo MARS.png';
+document.body.style.background='radial-gradient(circle at top,#4a1a1a,#120707,#000)';
+">
+Mars
+</button>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>About PlanetScope</h2>
+
+<p>
+Mapping the unknown edges of the galaxy since 2089.
+</p>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Deep Space Exploration</h3>
+
+<p>
+PlanetScope is responsible for cataloguing newly discovered worlds,
+monitoring strange cosmic signals, and documenting unexplained anomalies beyond the mapped sectors.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Signal Recovery</h3>
+
+<p>
+Long-range drones collect damaged transmissions from abandoned colonies and unidentified planetary systems.
+Many signals contain distorted voices, music, and impossible frequencies.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Classified Missions</h3>
+
+<p>
+Several PlanetScope expeditions have vanished after entering restricted sectors.
+Public records regarding these missions remain heavily censored.
+</p>
+
+</div>
+
+</div>
+
+<div class="info-strip">
+
+<h2>What Is VineList?</h2>
+
+<p>
+VineList began as an underground audio preservation company specializing in rare analog recordings.
+After discovering PlanetScope transmissions hidden within abandoned satellite frequencies,
+the company partnered with PlanetScope to create collectible vinyl discs based on real recovered signals.
+Each disc contains encrypted data, planetary audio patterns, and classified mission logs.
+</p>
+
+</div>
+
+</section>
+
+<!-- PLANET INFO -->
+
+<section class="section">
+
+
+<!-- SIGNAL LOG -->
+
+<section class="section">
+
+<div class="section-title">
+
+<h2>Recovered Transmission</h2>
+
+<p>
+Recovered from Drone PS-01 near the Vireon sector.
+</p>
+
+</div>
+
+<div class="signal-box">
+
+<h3>SIGNAL LOG #229</h3>
+
+<p id="typing"></p>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>
+PlanetScope Exploration Division © 2094
+</p>
+
+<p style="opacity:0.08; margin-top:15px; letter-spacing:4px;">
+THEY HEARD US FIRST
+</p>
+
+</footer>
+
+<script>
+
+/* TYPING EFFECT */
+
+const text =
+"Drone PS-01 stopped transmitting after entering the lower atmosphere of Vireon-3. Audio recovered from the final seconds included distorted singing and unidentified mechanical noises beneath the clouds.";
+
+let i = 0;
+
+function typeWriter(){
+
+    if(i < text.length){
+
+        document.getElementById("typing").innerHTML += text.charAt(i);
+
+        i++;
+
+        setTimeout(typeWriter,25);
+    }
+}
+
+window.onload = typeWriter;
+
+/* RANDOM SIGNAL FLASH */
+
+setInterval(()=>{
+
+    if(Math.random() > 0.985){
+
+        document.body.style.filter = "brightness(1.3)";
+
+        setTimeout(()=>{
+
+            document.body.style.filter = "brightness(1)";
+
+        },100);
+    }
+
+},500);
+
+</script>
+
+</body>
+</html>
